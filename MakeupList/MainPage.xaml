@@ -9,10 +9,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout HorizontalOptions="Center">
-                            
-                            <Label Text="{Binding Name}"/>
-                        </StackLayout>
+                        <Label Text="{Binding Name}"/>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
