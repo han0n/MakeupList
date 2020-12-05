@@ -79,16 +79,40 @@
         </Grid>
 
 
-        <Grid Grid.Row="1">
-            <ListView x:Name="ListaProductos">
-                <ListView.ItemTemplate>
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
+            <CollectionView x:Name="ListaProductos" ItemsLayout="VerticalGrid, 2">
+                <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <ImageCell 
-                            ImageSource="{Binding ImageLink}">
-                        </ImageCell>
+                        <Grid RowDefinitions="Auto, 3*, Auto" 
+                              ColumnDefinitions="3*, Auto, Auto"
+                              Padding="3">
+                            
+                            <Image Grid.Row="0"
+                                   Grid.ColumnSpan="3"
+                                   Source="{Binding ImageLink}"
+                                   Aspect="Fill"
+                                   HeightRequest="260"
+                                   MinimumHeightRequest="150"/>
+                            
+                            <Label Grid.Row="1" 
+                                   Grid.ColumnSpan="3"
+                                   Text="{Binding Name}" 
+                                   FontSize="Small"
+                                   LineBreakMode="WordWrap" />
+                            
+                            <Label Grid.Row="2" 
+                                   Grid.Column="1"
+                                   Text="{Binding Price}" 
+                                   LineBreakMode="WordWrap" />
+                            
+                            <Label Grid.Row="2"
+                                   Grid.Column="2"
+                                   Text="€"/>
+
+                        </Grid>
                     </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </Grid>
 
     </Grid>
