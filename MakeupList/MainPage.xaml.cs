@@ -19,25 +19,7 @@ namespace MakeupList
             InitializeComponent();
         }
 
-        private async void Button_Clicked(object sender, EventArgs e)
-        {
-            var request = new HttpRequestMessage();
-            request.RequestUri = new Uri("http://makeup-api.herokuapp.com/api/v1/products.json");
-            request.Method = HttpMethod.Get;
-            //request.Headers.Add("Accept", "application/json");
-
-            var client = new HttpClient();
-            HttpResponseMessage response = await client.SendAsync(request);
-
-            if/*(response.StatusCode == HttpStatusCode.OK)*/(response.IsSuccessStatusCode)
-            {
-                string content = await response.Content.ReadAsStringAsync();
-                var resultado = JsonConvert.DeserializeObject<List<Product>>(content);
-
-                ListaProductos.ItemsSource = resultado;
-            }
-        }
-
+        /*
         private async void MostrarLabiales(object sender, EventArgs e)
         {
             var request = new HttpRequestMessage();
@@ -48,7 +30,7 @@ namespace MakeupList
             var client = new HttpClient();
             HttpResponseMessage response = await client.SendAsync(request);
 
-            if/*(response.StatusCode == HttpStatusCode.OK)*/(response.IsSuccessStatusCode)
+            if/*(response.StatusCode == HttpStatusCode.OK)//(response.IsSuccessStatusCode)
             {
                 string content = await response.Content.ReadAsStringAsync();
                 var resultado = JsonConvert.DeserializeObject<List<Product>>(content);
@@ -57,5 +39,6 @@ namespace MakeupList
 
             }
         }
+        */
     }
 }

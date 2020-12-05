@@ -2,33 +2,57 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MakeupList.MainPage">
-    <Grid>
-        <StackLayout>
-            <Button Text="Listar" Clicked="Button_Clicked"/>
-            <ListView x:Name="ListaProductos">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Label Text="{Binding Name}"/>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="Medium"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    
+    <Grid RowDefinitions="Auto, Auto, *" Margin="6,20,6,6">
+        
+        <Grid Grid.Row="0">
+            <Expander>
+                <Expander.Header>
+                    <Label Text="Cara" Margin="0,0,0,10"/>
+                </Expander.Header>
+                <Grid RowDefinitions="Auto, Auto, Auto" Margin="10,0,10,0">
+                    <Label Grid.Row="0" Text="Coloretes"/>
+                    <Label Grid.Row="1" Text="Bronceadores"/>
+                    <Label Grid.Row="2" Text="Bases" />
+                </Grid>
+            </Expander>
+        </Grid>
+        
+        <Grid Grid.Row="1">
+            <Expander>
+                <Expander.Header>
+                    <Label Text="Ojos" Margin="0,0,0,10"/>
+                </Expander.Header>
+                <Grid RowDefinitions="Auto, Auto, Auto, Auto" Margin="10,0,10,0">
+                    <Label Grid.Row="0" Text="Delineadores de cejas"/>
+                    <Label Grid.Row="1" Text="Delineadores de ojos"/>
+                    <Label Grid.Row="2" Text="Sombras de ojos" />
+                    <Label Grid.Row="3" Text="Rimel" />
+                </Grid>
+            </Expander>
+        </Grid>
 
-        <StackLayout Grid.Row="1">
-        <Button Text="Labiales" Clicked="MostrarLabiales"/>
-        <ListView x:Name="LvLabiales">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Label Text="{Binding Name}"/>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        </StackLayout>
+        <Grid Grid.Row="2">
+            <Expander>
+                <Expander.Header>
+                    <Label Text="Labios" Margin="0,0,0,10"/>
+                </Expander.Header>
+                <Grid RowDefinitions="Auto, Auto" Margin="10,0,10,0">
+                    <Label Grid.Row="0" Text="Perfiladores labiales"/>
+                    <Label Grid.Row="1" Text="Pintalabios"/>
+                </Grid>
+            </Expander>
+        </Grid>
+
     </Grid>
-
-
+    
+    
 </ContentPage>

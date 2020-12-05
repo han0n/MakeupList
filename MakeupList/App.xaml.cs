@@ -8,6 +8,7 @@ namespace MakeupList
     {
         public App()
         {
+            Device.SetFlags(new string[] { "Expander_Experimental" });
             InitializeComponent();
 
             MainPage = new MainPage();
