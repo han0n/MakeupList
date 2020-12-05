@@ -38,43 +38,24 @@ namespace MakeupList
             }
         }
 
-
-        public partial class Product
+        private async void MostrarLabiales(object sender, EventArgs e)
         {
-            public long Id { get; set; }
-            public string Brand { get; set; }
-            public string Name { get; set; }
-            public string Price { get; set; }
-            public PriceSign? PriceSign { get; set; }
-            public Currency? Currency { get; set; }
-            public Uri ImageLink { get; set; }
-            public Uri ProductLink { get; set; }
-            public Uri WebsiteLink { get; set; }
-            public string Description { get; set; }
-            public double? Rating { get; set; }
-            public Category? Category { get; set; }
-            public ProductType ProductType { get; set; }
-            public string[] TagList { get; set; }
-            public DateTimeOffset CreatedAt { get; set; }
-            public DateTimeOffset UpdatedAt { get; set; }
-            public Uri ProductApiUrl { get; set; }
-            public string ApiFeaturedImage { get; set; }
-            public ProductColor[] ProductColors { get; set; }
+            var request = new HttpRequestMessage();
+            request.RequestUri = new Uri("http://makeup-api.herokuapp.com/api/v1/products.json?product_type=lipstick");
+            request.Method = HttpMethod.Get;
+            //request.Headers.Add("Accept", "application/json");
+
+            var client = new HttpClient();
+            HttpResponseMessage response = await client.SendAsync(request);
+
+            if/*(response.StatusCode == HttpStatusCode.OK)*/(response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+                var resultado = JsonConvert.DeserializeObject<List<Product>>(content);
+
+                ListaProductos.ItemsSource = resultado;
+
+            }
         }
-
-        public partial class ProductColor
-        {
-            public string HexValue { get; set; }
-            public string ColourName { get; set; }
-        }
-
-        public enum Category { BbCc, Concealer, Contour, Cream, Empty, Gel, Highlighter, LipGloss, LipStain, Lipstick, Liquid, Mineral, Palette, Pencil, Powder };
-
-        public enum Currency { Cad, Gbp, Usd };
-
-        public enum PriceSign { Empty, PriceSign };
-
-        public enum ProductType { Blush, Bronzer, Eyebrow, Eyeliner, Eyeshadow, Foundation, LipLiner, Lipstick, Mascara, NailPolish };
     }
-    
 }
