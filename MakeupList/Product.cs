@@ -21,23 +21,11 @@ namespace MakeupList
 
     public partial class Product
     {
-        [JsonProperty("id")]
-        public long Id { get; set; }
-
-        [JsonProperty("brand")]
-        public string Brand { get; set; }
-
         [JsonProperty("name")]
         public string Name { get; set; }
 
         [JsonProperty("price")]
         public string Price { get; set; }
-
-        [JsonProperty("price_sign")]
-        public object PriceSign { get; set; }
-
-        [JsonProperty("currency")]
-        public object Currency { get; set; }
 
         [JsonProperty("image_link")]
         public Uri ImageLink { get; set; }
@@ -60,32 +48,12 @@ namespace MakeupList
         [JsonProperty("product_type")]
         public string ProductType { get; set; }
 
-        [JsonProperty("tag_list")]
-        public object[] TagList { get; set; }
-
-        [JsonProperty("created_at")]
-        public DateTimeOffset CreatedAt { get; set; }
-
-        [JsonProperty("updated_at")]
-        public DateTimeOffset UpdatedAt { get; set; }
-
         [JsonProperty("product_api_url")]
         public Uri ProductApiUrl { get; set; }
 
         [JsonProperty("api_featured_image")]
         public string ApiFeaturedImage { get; set; }
 
-        [JsonProperty("product_colors")]
-        public ProductColor[] ProductColors { get; set; }
-    }
-
-    public partial class ProductColor
-    {
-        [JsonProperty("hex_value")]
-        public string HexValue { get; set; }
-
-        [JsonProperty("colour_name")]
-        public string ColourName { get; set; }
     }
 
     public partial class Product

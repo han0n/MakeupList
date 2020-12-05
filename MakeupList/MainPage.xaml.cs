@@ -20,18 +20,69 @@ namespace MakeupList
             InitializeComponent();
         }
 
-        private async void BtnLabial_Clicked(object sender, EventArgs e)
+        private async void TomarDatos(HttpClient cliente, string url)
+        {
+            HttpResponseMessage respuesta = await cliente.GetAsync(url);
+            var json = respuesta.Content.ReadAsStringAsync().Result;
+            // Aquí ya deserializa desde el modelo Product
+            Product[] producto = Product.FromJson(json);
+
+            ListaProductos.ItemsSource = producto;
+        } 
+        private void BtnLabial_Clicked(object sender, EventArgs e)
         {
             HttpClient cliente = new HttpClient();
             string url = "https://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline&product_type=lipstick";
-
-            HttpResponseMessage respuesta = await cliente.GetAsync(url);
-            var json = respuesta.Content.ReadAsStringAsync().Result;
-
-            Product[] pintalabios = Product.FromJson(json);
-
-            ListaProductos.ItemsSource = pintalabios;
+            // En este método se pasa el cliente junto a la url de donde se consumen los datos
+            TomarDatos(cliente, url);
         }
 
+        private void BtnColorete_Clicked(object sender, EventArgs e)
+        {
+            string url = "https://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline&product_type=blush";
+            TomarDatos(new HttpClient(), url);
+        }
+
+        private void BtnBronceador_Clicked(object sender, EventArgs e)
+        {
+            string url = "https://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline&product_type=bronzer";
+            TomarDatos(new HttpClient(), url);
+        }
+
+        private void BtnBase_Clicked(object sender, EventArgs e)
+        {
+            string url = "https://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline&product_type=foundation";
+            TomarDatos(new HttpClient(), url);
+        }
+
+        private void BtnPerfiladores_Clicked(object sender, EventArgs e)
+        {
+            string url = "https://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline&product_type=lip_liner";
+            TomarDatos(new HttpClient(), url);
+        }
+
+        private void BtnDelCejas_Clicked(object sender, EventArgs e)
+        {
+            string url = "https://makeup-api.herokuapp.com/api/v1/products.json?brand=clinique&product_type=eyebrow";
+            TomarDatos(new HttpClient(), url);
+        }
+
+        private void BtnDelOjos_Clicked(object sender, EventArgs e)
+        {
+            string url = "https://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline&product_type=eyeliner";
+            TomarDatos(new HttpClient(), url);
+        }
+
+        private void BtnSombra_Clicked(object sender, EventArgs e)
+        {
+            string url = "https://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline&product_type=eyeshadow";
+            TomarDatos(new HttpClient(), url);
+        }
+
+        private void BtnRimel_Clicked(object sender, EventArgs e)
+        {
+            string url = "https://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline&product_type=mascara";
+            TomarDatos(new HttpClient(), url);
+        }
     }
 }

@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MakeupList.MainPage">
+             x:Class="MakeupList.MainPage"
+             BackgroundColor="#FFFFFF">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Label">
@@ -30,9 +31,9 @@
                     <Label Text="Cara" Margin="0,0,0,10" HorizontalOptions="Center"/>
                 </Expander.Header>
                 <Grid RowDefinitions="Auto, Auto, Auto" >
-                    <Button Grid.Row="0" Text="Coloretes"/>
-                    <Button Grid.Row="1" Text="Bronceadores"/>
-                    <Button Grid.Row="2" Text="Bases" />
+                    <Button Grid.Row="0" Text="Coloretes" Clicked="BtnColorete_Clicked"/>
+                    <Button Grid.Row="1" Text="Bronceadores" Clicked="BtnBronceador_Clicked"/>
+                    <Button Grid.Row="2" Text="Bases" Clicked="BtnBase_Clicked"/>
                 </Grid>
             </Expander>
         </Grid>
@@ -46,7 +47,7 @@
                     <Label Text="Labios" Margin="0,0,0,10" HorizontalOptions="Center"/>
                 </Expander.Header>
                 <Grid RowDefinitions="Auto, Auto" >
-                    <Button Grid.Row="0" Text="Perfiladores"/>
+                    <Button Grid.Row="0" Text="Perfiladores" Clicked="BtnPerfiladores_Clicked"/>
                     <Button Grid.Row="1" Text="Pintalabios" Clicked="BtnLabial_Clicked"/>
                 </Grid>
             </Expander>
@@ -67,13 +68,13 @@
                             <Label Text="Delineadores" Margin="0,12,0,12" HorizontalOptions="Center"/>
                         </Expander.Header>
                         <Grid RowDefinitions="Auto, Auto">
-                            <Button Grid.Row="0" Text="Para cejas" Margin="0,7,0,0"/>
-                            <Button Grid.Row="1" Text="Para ojos"/>
+                            <Button Grid.Row="0" Text="Para cejas" Margin="0,7,0,0" Clicked="BtnDelCejas_Clicked"/>
+                            <Button Grid.Row="1" Text="Para ojos" Clicked="BtnDelOjos_Clicked"/>
                         </Grid>
                     </Expander>
 
-                    <Button Grid.Row="1" Text="Sombras" />
-                    <Button Grid.Row="2" Text="Rimel" />
+                    <Button Grid.Row="1" Text="Sombras" Clicked="BtnSombra_Clicked"/>
+                    <Button Grid.Row="2" Text="Rimel" Clicked="BtnRimel_Clicked"/>
                 </Grid>
             </Expander>
         </Grid>
