@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using System.Net;
 using System.Net.Http;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System.Collections.ObjectModel;
 
 namespace MakeupList
@@ -19,11 +20,34 @@ namespace MakeupList
             InitializeComponent();
         }
 
+        private async void BtnLabial_Clicked(object sender, EventArgs e)
+        {
+            //var request = new HttpRequestMessage();
+            //request.RequestUri = new Uri("https://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline&product_type=lipstick");
+            //request.Method = HttpMethod.Get;
+
+            HttpClient cliente = new HttpClient();
+            string url = "https://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline&product_type=lipstick";
+
+            HttpResponseMessage respuesta = await cliente.GetAsync(url);
+            var json = respuesta.Content.ReadAsStringAsync().Result;
+
+            Product[] modelo = Product.FromJson(json);
+
+            //if (respuesta.IsSuccessStatusCode)
+            //{
+              //  string content = await respuesta.Content.ReadAsStringAsync();
+                //ObservableCollection<Product> resultado = JsonConvert.DeserializeObject<ObservableCollection<Product>>(content);
+
+                ListaProductos.ItemsSource = modelo;
+            //}
+        }
+
         /*
         private async void MostrarLabiales(object sender, EventArgs e)
         {
             var request = new HttpRequestMessage();
-            request.RequestUri = new Uri("http://makeup-api.herokuapp.com/api/v1/products.json?product_type=lipstick");
+            request.RequestUri = new Uri("http://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline&product_type=lipstick");
             request.Method = HttpMethod.Get;
             //request.Headers.Add("Accept", "application/json");
 
