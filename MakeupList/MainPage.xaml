@@ -5,54 +5,80 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Label">
-                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="FontSize" Value="Default"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="FontSize" Value="Default"/>
+                <Setter Property="TextTransform" Value="None"/>
+                <Setter Property="Padding" Value="0,0,0,0"/>
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
     
     
-    <Grid RowDefinitions="Auto, Auto, *" Margin="6,20,6,6">
+    <Grid RowDefinitions="Auto, Auto, *" 
+          ColumnDefinitions="*, *, *"
+          Margin="6,20,6,6">
         
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0"
+              Grid.Column="0"
+              HorizontalOptions="Center">
             <Expander>
                 <Expander.Header>
-                    <Label Text="Cara" Margin="0,0,0,10"/>
+                    <Label Text="Cara" Margin="0,0,0,10" HorizontalOptions="Center"/>
                 </Expander.Header>
-                <Grid RowDefinitions="Auto, Auto, Auto" Margin="10,0,10,0">
-                    <Label Grid.Row="0" Text="Coloretes"/>
-                    <Label Grid.Row="1" Text="Bronceadores"/>
-                    <Label Grid.Row="2" Text="Bases" />
-                </Grid>
-            </Expander>
-        </Grid>
-        
-        <Grid Grid.Row="1">
-            <Expander>
-                <Expander.Header>
-                    <Label Text="Ojos" Margin="0,0,0,10"/>
-                </Expander.Header>
-                <Grid RowDefinitions="Auto, Auto, Auto, Auto" Margin="10,0,10,0">
-                    <Label Grid.Row="0" Text="Delineadores de cejas"/>
-                    <Label Grid.Row="1" Text="Delineadores de ojos"/>
-                    <Label Grid.Row="2" Text="Sombras de ojos" />
-                    <Label Grid.Row="3" Text="Rimel" />
+                <Grid RowDefinitions="Auto, Auto, Auto" >
+                    <Button Grid.Row="0" Text="Coloretes"/>
+                    <Button Grid.Row="1" Text="Bronceadores"/>
+                    <Button Grid.Row="2" Text="Bases" />
                 </Grid>
             </Expander>
         </Grid>
 
-        <Grid Grid.Row="2">
+
+        <Grid Grid.Row="0"
+              Grid.Column="1"
+              HorizontalOptions="Center">
             <Expander>
                 <Expander.Header>
-                    <Label Text="Labios" Margin="0,0,0,10"/>
+                    <Label Text="Labios" Margin="0,0,0,10" HorizontalOptions="Center"/>
                 </Expander.Header>
-                <Grid RowDefinitions="Auto, Auto" Margin="10,0,10,0">
-                    <Label Grid.Row="0" Text="Perfiladores labiales"/>
-                    <Label Grid.Row="1" Text="Pintalabios"/>
+                <Grid RowDefinitions="Auto, Auto" >
+                    <Button Grid.Row="0" Text="Perfiladores"/>
+                    <Button Grid.Row="1" Text="Pintalabios"/>
+                </Grid>
+            </Expander>
+        </Grid>
+        
+        
+        <Grid Grid.Row="0"
+                  Grid.Column="2"
+                  HorizontalOptions="Center">
+            <Expander>
+                <Expander.Header>
+                    <Label Text="Ojos" Margin="0,0,0,10" HorizontalOptions="Center"/>
+                </Expander.Header>
+                <Grid RowDefinitions="Auto, Auto, Auto" >
+
+                    <Expander Grid.Row="0">
+                        <Expander.Header>
+                            <Label Text="Delineadores" Margin="0,12,0,12" HorizontalOptions="Center"/>
+                        </Expander.Header>
+                        <Grid RowDefinitions="Auto, Auto">
+                            <Button Grid.Row="0" Text="Para cejas" Margin="0,7,0,0"/>
+                            <Button Grid.Row="1" Text="Para ojos"/>
+                        </Grid>
+                    </Expander>
+
+                    <Button Grid.Row="1" Text="Sombras" />
+                    <Button Grid.Row="2" Text="Rimel" />
                 </Grid>
             </Expander>
         </Grid>
 
     </Grid>
-    
-    
+
+
 </ContentPage>
