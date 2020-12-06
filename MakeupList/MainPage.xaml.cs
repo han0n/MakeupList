@@ -23,7 +23,10 @@ namespace MakeupList
             InitializeComponent();
             BtnClinique.Clicked += BtnClinique_Clicked;
             BtnMaybelline.Clicked += BtnMaybelline_Clicked;
+            Ayuda.Text = "Seleccione la marca y el tipo  de producto para que se muestre el catálogo de productos.";
         }
+
+        #region Botones Marca
 
         private void BtnClinique_Clicked(object sender, EventArgs e)
         {
@@ -39,6 +42,10 @@ namespace MakeupList
             Ayuda.Text = "";
         }
 
+        #endregion
+
+        #region Petición y Deserialización
+
         private async void TomarDatos(HttpClient cliente, string url)
         {
             HttpResponseMessage respuesta = await cliente.GetAsync(url);
@@ -48,13 +55,13 @@ namespace MakeupList
 
             ListaProductos.ItemsSource = producto;
             if (producto.Length > 0) { Indicador.IsVisible = false; }
-            else 
-            { 
+            else
+            {
                 if (Marca() != servicioRest + "?brand=none")
                 {
                     DisplayAlert("", "No se ha encontrado ningún producto", "De acuerdo");
                 }
-                else 
+                else
                 {
                     DisplayAlert("", "No se ha seleccionado ninguna de las dos marcas", "Vale");
                 }
@@ -62,7 +69,7 @@ namespace MakeupList
                 Indicador.IsVisible = false;
 
             }
-            
+
         }
 
         private string Marca()
@@ -83,6 +90,10 @@ namespace MakeupList
             return url2;
         }
 
+        #endregion
+
+        #region Reconfiguración
+
         private void Cargando()
         {
             ExpCara.IsExpanded = false;
@@ -91,6 +102,10 @@ namespace MakeupList
             ExpOjos.IsExpanded = false;
             Indicador.IsVisible = true;
         }
+
+        #endregion
+
+        #region Botones Tipos de Producto
 
         private void BtnLabial_Clicked(object sender, EventArgs e)
         {
@@ -160,5 +175,8 @@ namespace MakeupList
             string url = Marca() + "&product_type=mascara";
             TomarDatos(new HttpClient(), url);
         }
+
+        #endregion
+
     }
 }

@@ -6,32 +6,78 @@
     
     <ContentPage.Resources>
         <ResourceDictionary>
+            <!-- Estilo para todos los labels-->
             <Style TargetType="Label">
                 <Setter Property="FontSize" Value="Default"/>
                 <Setter Property="HorizontalOptions" Value="Center"/>
             </Style>
+            <!-- Estilo para todos los botones-->
             <Style TargetType="Button">
-                <Setter Property="Background" Value="White"/>
+                <Setter Property="Background" Value="Transparent"/>
                 <Setter Property="FontSize" Value="Default"/>
                 <Setter Property="TextTransform" Value="None"/>
-                <Setter Property="Padding" Value="0,0,0,0"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="CornerRadius" Value="0"/>
             </Style>
+            <!-- Estilo del texto de ayuda-->
+            <Style TargetType="Label" x:Key="Ayuda">
+                <Setter Property="Padding" Value="20"/>
+                <Setter Property="Grid.Row" Value="1"/>
+                <Setter Property="Grid.RowSpan" Value="2"/>
+                <Setter Property="Grid.Column" Value="0"/>
+                <Setter Property="Grid.ColumnSpan" Value="3"/>
+                <Setter Property="FontSize" Value="Default"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            </Style>
+            <!-- Estilo del boton con logo Maybelline-->
+            <Style TargetType="Button" x:Key="MayBelline">
+                <Setter Property="ImageSource" Value="https://i.imgur.com/xZzt7wn.png"/>
+                <Setter Property="Grid.Row" Value="1"/>
+                <Setter Property="Grid.Column" Value="0"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="CornerRadius" Value="0"/>
+                <Setter Property="Background" Value="#F9F9F9"/>
+            </Style>
+            <!-- Estilo del boton con logo Clinique-->
+            <Style TargetType="Button" x:Key="Clinique">
+                <Setter Property="ImageSource" Value="https://i.imgur.com/TnYk7K3.png"/>
+                <Setter Property="Grid.Row" Value="1"/>
+                <Setter Property="Grid.Column" Value="1"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="CornerRadius" Value="0"/>
+                <Setter Property="Background" Value="#F9F9F9"/>
+            </Style>
+            <!-- Estilo del indicador de actividad-->
+            <Style TargetType="ActivityIndicator" x:Key="Indicador">
+                <Setter Property="Grid.Row" Value="2"/>
+                <Setter Property="Grid.Column" Value="0"/>
+                <Setter Property="Grid.ColumnSpan" Value="3"/>
+                <Setter Property="IsEnabled" Value="True"/>
+                <Setter Property="IsRunning" Value="True"/>
+                <Setter Property="IsVisible" Value="False"/>
+                <Setter Property="Color" Value="#000"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+
         </ResourceDictionary>
     </ContentPage.Resources>
     
     
     <Grid RowDefinitions="Auto, Auto, Auto" 
           ColumnDefinitions="*, *, *"
-          Margin="3,2,3,2">
-
+          Margin="2,1,2,1">
+        
+        <!--Cabecera-->
         <Grid Grid.Row="0"
               Grid.ColumnSpan="3"
               ColumnDefinitions="5*, 3*"
               RowDefinitions="1*, 3*, 2, 2">
-            <StackLayout Grid.Row="0" Grid.ColumnSpan="2" BackgroundColor="Black"/>
-            <Button Grid.Row="1" Grid.Column="0" x:Name="BtnMaybelline" ImageSource="https://i.imgur.com/xZzt7wn.png" />
-            <Button Grid.Row="1" Grid.Column="1" x:Name="BtnClinique" ImageSource="https://i.imgur.com/TnYk7K3.png"/>
-            <StackLayout Grid.Row="2" Grid.ColumnSpan="2" BackgroundColor="Black"/>
+            <StackLayout Grid.Row="0" Grid.ColumnSpan="2" BackgroundColor="#000"/>
+            <Button x:Name="BtnMaybelline" Style="{StaticResource MayBelline}" />
+            <Button x:Name="BtnClinique" Style="{StaticResource Clinique}"/>
+            <StackLayout Grid.Row="2" Grid.ColumnSpan="2" BackgroundColor="#000"/>
         </Grid>
 
         <!--Productos para la Cara-->
@@ -74,7 +120,7 @@
                     <Label Text="Ojos" Margin="0,0,0,10" HorizontalOptions="Center"/>
                 </Expander.Header>
                 <Grid RowDefinitions="Auto, Auto, Auto" >
-
+                    <!--SubExpander para los tipos de Delineadores, se mostraba feo tanto texto-->
                     <Expander Grid.Row="0" x:Name="ExpDelin">
                         <Expander.Header>
                             <Label Text="Delineadores" Margin="0,12,0,12" HorizontalOptions="Center"/>
@@ -92,7 +138,7 @@
         </Grid>
         
         <!--Grid.Row="1" Grid.RowSpan="2" son necesarias estas dos para que el texto no se mueva de sitio-->
-        <Label x:Name="Ayuda" Padding="20" Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Text="Seleccione la marca y el tipo de producto para que se muestre el catálogo de productos." VerticalOptions="Center" HorizontalTextAlignment="Center"/>
+        <Label x:Name="Ayuda" Style="{StaticResource Ayuda}" />
         
 
         <!--CollectionView que muestra los productos según categoría seleccionada-->
@@ -109,14 +155,15 @@
                                    Source="{Binding ImageLink}"
                                    Aspect="Fill"
                                    HeightRequest="260"
-                                   MinimumHeightRequest="150"/>
+                                   MinimumHeightRequest="150"
+                                   Margin="3,0,3,0"/>
                             
                             <Label Grid.Row="1" 
                                    Grid.ColumnSpan="3"
                                    Text="{Binding Name}" 
                                    FontSize="Small"
                                    LineBreakMode="WordWrap" 
-                                   Margin="3,0,3,0"/>
+                                   Margin="6,0,6,0"/>
                             
                             <Label Grid.Row="2" 
                                    Grid.Column="1"
@@ -126,15 +173,17 @@
                             <Label Grid.Row="2"
                                    Grid.Column="2"
                                    Text="€"
-                                   Margin="0,0,8,0"/>
+                                   Margin="0,0,11,0"/>
 
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </Grid>
+        
+        <!--Indicador de actividad-->
         <!--Por si no se muestra bien, lo pongo al final para que se muestre encima de los productos--> 
-        <ActivityIndicator x:Name="Indicador" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" IsEnabled="True" IsRunning="True" IsVisible="False" Color="Black" BackgroundColor="Transparent" VerticalOptions="Center"/>
+        <ActivityIndicator x:Name="Indicador" Style="{StaticResource Indicador}"/>
 
     </Grid>
 
