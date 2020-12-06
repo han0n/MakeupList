@@ -23,9 +23,16 @@
     <Grid RowDefinitions="Auto, Auto, Auto" 
           ColumnDefinitions="*, *, *"
           Margin="6,20,6,6">
-        
-        <!--Productos para la Cara-->
+
         <Grid Grid.Row="0"
+              Grid.ColumnSpan="3"
+              ColumnDefinitions="*, *">
+            <Button Grid.Column="0" Text="Maybelline" x:Name="BtnMaybelline"/>
+            <Button Grid.Column="1" Text="Clinique" x:Name="BtnClinique"/>
+        </Grid>
+
+        <!--Productos para la Cara-->
+        <Grid Grid.Row="1"
               Grid.Column="0"
               HorizontalOptions="Center">
             <Expander x:Name="ExpCara">
@@ -41,7 +48,7 @@
         </Grid>
 
         <!--Productos para los Labios-->
-        <Grid Grid.Row="0"
+        <Grid Grid.Row="1"
               Grid.Column="1"
               HorizontalOptions="Center">
             <Expander x:Name="ExpLabios">
@@ -56,7 +63,7 @@
         </Grid>
 
         <!--Productos para los Ojos-->
-        <Grid Grid.Row="0"
+        <Grid Grid.Row="1"
                   Grid.Column="2"
                   HorizontalOptions="Center">
             <Expander x:Name="ExpOjos">
@@ -81,10 +88,10 @@
             </Expander>
         </Grid>
 
-        <ActivityIndicator x:Name="Indicador" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" IsEnabled="True" IsRunning="True" IsVisible="False" Color="Black" BackgroundColor="Transparent"/>
+        <ActivityIndicator x:Name="Indicador" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" IsEnabled="True" IsRunning="True" IsVisible="False" Color="Black" BackgroundColor="Transparent"/>
 
         <!--CollectionView que muestra los productos según categoría seleccionada-->
-        <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
+        <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3">
             <CollectionView x:Name="ListaProductos" ItemsLayout="VerticalGrid, 2">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>

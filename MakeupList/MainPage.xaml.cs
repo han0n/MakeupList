@@ -21,6 +21,20 @@ namespace MakeupList
         public MainPage()
         {
             InitializeComponent();
+            BtnClinique.Clicked += BtnClinique_Clicked;
+            BtnMaybelline.Clicked += BtnMaybelline_Clicked;
+        }
+
+        private void BtnClinique_Clicked(object sender, EventArgs e)
+        {
+            //throw new NotImplementedException();
+            BtnClinique.IsEnabled = false;
+            BtnMaybelline.IsEnabled = true;
+        }
+        private void BtnMaybelline_Clicked(object sender, EventArgs e)
+        {
+            BtnClinique.IsEnabled = true;
+            BtnMaybelline.IsEnabled = false;
         }
 
         private async void TomarDatos(HttpClient cliente, string url)
@@ -36,7 +50,9 @@ namespace MakeupList
                 Indicador.IsVisible = false;
             }
             
-        } 
+        }
+
+        
 
         private void Cargando()
         {
@@ -88,8 +104,12 @@ namespace MakeupList
         private void BtnDelCejas_Clicked(object sender, EventArgs e)
         {
             Cargando();
-            this.url += "?brand=clinique&product_type=eyebrow";
-            TomarDatos(new HttpClient(), url);
+            string url2 = "";
+            if (BtnMaybelline.IsEnabled == false) { url2 = "https://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline"; }
+            if (BtnClinique.IsEnabled == false) { url2 = "https://makeup-api.herokuapp.com/api/v1/products.json?brand=clinique"; }
+
+            url2 += "&product_type=eyebrow";
+            TomarDatos(new HttpClient(), url2);
         }
 
         private void BtnDelOjos_Clicked(object sender, EventArgs e)
@@ -102,8 +122,11 @@ namespace MakeupList
         private void BtnSombra_Clicked(object sender, EventArgs e)
         {
             Cargando();
-            this.url += "?brand=maybelline&product_type=eyeshadow";
-            TomarDatos(new HttpClient(), url);
+            string url2 = "";
+            if (BtnMaybelline.IsEnabled == false) { url2 = "https://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline"; }
+            if (BtnClinique.IsEnabled == false) { url2 = "https://makeup-api.herokuapp.com/api/v1/products.json?brand=clinique"; }
+            url2 += "&product_type=eyeshadow";
+            TomarDatos(new HttpClient(), url2);
         }
 
         private void BtnRimel_Clicked(object sender, EventArgs e)
