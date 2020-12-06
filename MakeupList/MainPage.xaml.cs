@@ -17,7 +17,7 @@ namespace MakeupList
     {
         // Como siempre se usará el mismo servicio REST, he cogido la parte de la url 
         //donde no se realiza una consulta para dinamizar y esclarecer el código. 
-        private string url = "https://makeup-api.herokuapp.com/api/v1/products.json";
+        private string servicioRest = "https://makeup-api.herokuapp.com/api/v1/products.json";
         public MainPage()
         {
             InitializeComponent();
@@ -45,14 +45,41 @@ namespace MakeupList
             Product[] producto = Product.FromJson(json);
 
             ListaProductos.ItemsSource = producto;
-            if (producto.Length > 0)
-            {
+            if (producto.Length > 0) { Indicador.IsVisible = false; }
+            else 
+            { 
+                if (Marca() != servicioRest + "?brand=none")
+                {
+                    DisplayAlert("", "No se ha encontrado ningún producto", "De acuerdo");
+                }
+                else 
+                {
+                    DisplayAlert("", "No se ha seleccionado ninguna de las dos marcas", "Vale");
+                }
+
                 Indicador.IsVisible = false;
+
             }
             
         }
 
-        
+        private string Marca()
+        {
+            string url2 = "";
+            // Si se ha presionado BtnMaybelline IsEnabled es false, 
+            //este valor lo toma en BtnMaybelline_Clicked(object sender, EventArgs e)
+            if (BtnMaybelline.IsEnabled == false) { url2 = servicioRest + "?brand=maybelline"; }
+
+            // Idem pero con BtnClinique y BtnClinique_Clicked(object sender, EventArgs e)
+            if (BtnClinique.IsEnabled == false) { url2 = servicioRest + "?brand=clinique"; }
+
+            // Si ninguno se ha presionado, lo avisará la aplicación 
+            if (BtnClinique.IsEnabled == true && BtnMaybelline.IsEnabled == true)
+            {
+                url2 = servicioRest + "?brand=none";
+            }
+            return url2;
+        }
 
         private void Cargando()
         {
@@ -65,10 +92,13 @@ namespace MakeupList
 
         private void BtnLabial_Clicked(object sender, EventArgs e)
         {
+            // Justo cuando se le pulsa al botón del tipo de producto, 
+            //saltará un ActivityIndicator y se cerrarán los Expanders.
             Cargando();
 
             HttpClient cliente = new HttpClient();
-            this.url += "?brand=maybelline&product_type=lipstick";
+            // Se añade al valor devuelto de Marca() el tipo de producto que corresponde al botón
+            string url = Marca() + "&product_type=lipstick";
             // En este método se pasa el cliente junto a la url de donde se consumen los datos
             TomarDatos(cliente, url);
         }
@@ -76,63 +106,56 @@ namespace MakeupList
         private void BtnColorete_Clicked(object sender, EventArgs e)
         {
             Cargando();
-            this.url += "?brand=maybelline&product_type=blush";
+            string url = Marca() + "&product_type=blush";
             TomarDatos(new HttpClient(), url);
         }
 
         private void BtnBronceador_Clicked(object sender, EventArgs e)
         {
             Cargando();
-            this.url += "?brand=maybelline&product_type=bronzer";
+            string url = Marca() + "&product_type=bronzer";
             TomarDatos(new HttpClient(), url);
         }
 
         private void BtnBase_Clicked(object sender, EventArgs e)
         {
             Cargando();
-            this.url += "?brand=maybelline&product_type=foundation";
+            string url = Marca() + "&product_type=foundation";
             TomarDatos(new HttpClient(), url);
         }
 
         private void BtnPerfiladores_Clicked(object sender, EventArgs e)
         {
             Cargando();
-            this.url += "?brand=maybelline&product_type=lip_liner";
+            string url = Marca() + "&product_type=lip_liner";
             TomarDatos(new HttpClient(), url);
         }
 
         private void BtnDelCejas_Clicked(object sender, EventArgs e)
         {
             Cargando();
-            string url2 = "";
-            if (BtnMaybelline.IsEnabled == false) { url2 = "https://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline"; }
-            if (BtnClinique.IsEnabled == false) { url2 = "https://makeup-api.herokuapp.com/api/v1/products.json?brand=clinique"; }
-
-            url2 += "&product_type=eyebrow";
-            TomarDatos(new HttpClient(), url2);
+            string url = Marca() + "&product_type=eyebrow";
+            TomarDatos(new HttpClient(), url);
         }
 
         private void BtnDelOjos_Clicked(object sender, EventArgs e)
         {
             Cargando();
-            this.url += "?brand=maybelline&product_type=eyeliner";
+            string url = Marca() + "&product_type=eyeliner";
             TomarDatos(new HttpClient(), url);
         }
 
         private void BtnSombra_Clicked(object sender, EventArgs e)
         {
             Cargando();
-            string url2 = "";
-            if (BtnMaybelline.IsEnabled == false) { url2 = "https://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline"; }
-            if (BtnClinique.IsEnabled == false) { url2 = "https://makeup-api.herokuapp.com/api/v1/products.json?brand=clinique"; }
-            url2 += "&product_type=eyeshadow";
-            TomarDatos(new HttpClient(), url2);
+            string url = Marca() + "&product_type=eyeshadow";
+            TomarDatos(new HttpClient(), url);
         }
 
         private void BtnRimel_Clicked(object sender, EventArgs e)
         {
             Cargando();
-            this.url += "?brand=maybelline&product_type=mascara";
+            string url = Marca() + "&product_type=mascara";
             TomarDatos(new HttpClient(), url);
         }
     }
