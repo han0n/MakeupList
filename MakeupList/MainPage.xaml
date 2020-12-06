@@ -11,7 +11,7 @@
                 <Setter Property="HorizontalOptions" Value="Center"/>
             </Style>
             <Style TargetType="Button">
-                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Background" Value="White"/>
                 <Setter Property="FontSize" Value="Default"/>
                 <Setter Property="TextTransform" Value="None"/>
                 <Setter Property="Padding" Value="0,0,0,0"/>
@@ -22,13 +22,16 @@
     
     <Grid RowDefinitions="Auto, Auto, Auto" 
           ColumnDefinitions="*, *, *"
-          Margin="6,20,6,6">
+          Margin="3,2,3,2">
 
         <Grid Grid.Row="0"
               Grid.ColumnSpan="3"
-              ColumnDefinitions="*, *">
-            <Button Grid.Column="0" Text="Maybelline" x:Name="BtnMaybelline"/>
-            <Button Grid.Column="1" Text="Clinique" x:Name="BtnClinique"/>
+              ColumnDefinitions="5*, 3*"
+              RowDefinitions="1*, 3*, 2, 2">
+            <StackLayout Grid.Row="0" Grid.ColumnSpan="2" BackgroundColor="Black"/>
+            <Button Grid.Row="1" Grid.Column="0" x:Name="BtnMaybelline" ImageSource="https://i.imgur.com/xZzt7wn.png" />
+            <Button Grid.Row="1" Grid.Column="1" x:Name="BtnClinique" ImageSource="https://i.imgur.com/TnYk7K3.png"/>
+            <StackLayout Grid.Row="2" Grid.ColumnSpan="2" BackgroundColor="Black"/>
         </Grid>
 
         <!--Productos para la Cara-->
@@ -39,7 +42,7 @@
                 <Expander.Header>
                     <Label Text="Cara" Margin="0,0,0,10" HorizontalOptions="Center"/>
                 </Expander.Header>
-                <Grid RowDefinitions="Auto, Auto, Auto" >
+                <Grid RowDefinitions="Auto, Auto, Auto">
                     <Button Grid.Row="0" Text="Coloretes" Clicked="BtnColorete_Clicked"/>
                     <Button Grid.Row="1" Text="Bronceadores" Clicked="BtnBronceador_Clicked"/>
                     <Button Grid.Row="2" Text="Bases" Clicked="BtnBase_Clicked"/>
@@ -87,11 +90,13 @@
                 </Grid>
             </Expander>
         </Grid>
-
-        <ActivityIndicator x:Name="Indicador" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" IsEnabled="True" IsRunning="True" IsVisible="False" Color="Black" BackgroundColor="Transparent"/>
+        
+        <!--Grid.Row="1" Grid.RowSpan="2" son necesarias estas dos para que el texto no se mueva de sitio-->
+        <Label x:Name="Ayuda" Padding="20" Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Text="Seleccione la marca y el tipo de producto para que se muestre el catálogo de productos." VerticalOptions="Center" HorizontalTextAlignment="Center"/>
+        
 
         <!--CollectionView que muestra los productos según categoría seleccionada-->
-        <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3">
+        <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
             <CollectionView x:Name="ListaProductos" ItemsLayout="VerticalGrid, 2">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
@@ -128,6 +133,8 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </Grid>
+        <!--Por si no se muestra bien, lo pongo al final para que se muestre encima de los productos--> 
+        <ActivityIndicator x:Name="Indicador" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" IsEnabled="True" IsRunning="True" IsVisible="False" Color="Black" BackgroundColor="Transparent" VerticalOptions="Center"/>
 
     </Grid>
 

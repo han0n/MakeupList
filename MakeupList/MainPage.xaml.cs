@@ -30,11 +30,13 @@ namespace MakeupList
             //throw new NotImplementedException();
             BtnClinique.IsEnabled = false;
             BtnMaybelline.IsEnabled = true;
+            Ayuda.Text = "";
         }
         private void BtnMaybelline_Clicked(object sender, EventArgs e)
         {
             BtnClinique.IsEnabled = true;
             BtnMaybelline.IsEnabled = false;
+            Ayuda.Text = "";
         }
 
         private async void TomarDatos(HttpClient cliente, string url)
