@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MakeupList.MainPage"
              BackgroundColor="#FFFFFF">
+    
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Label">
@@ -19,14 +20,15 @@
     </ContentPage.Resources>
     
     
-    <Grid RowDefinitions="Auto, Auto, *" 
+    <Grid RowDefinitions="Auto, Auto, Auto" 
           ColumnDefinitions="*, *, *"
           Margin="6,20,6,6">
         
+        <!--Productos para la Cara-->
         <Grid Grid.Row="0"
               Grid.Column="0"
               HorizontalOptions="Center">
-            <Expander>
+            <Expander x:Name="ExpCara">
                 <Expander.Header>
                     <Label Text="Cara" Margin="0,0,0,10" HorizontalOptions="Center"/>
                 </Expander.Header>
@@ -38,11 +40,11 @@
             </Expander>
         </Grid>
 
-
+        <!--Productos para los Labios-->
         <Grid Grid.Row="0"
               Grid.Column="1"
               HorizontalOptions="Center">
-            <Expander>
+            <Expander x:Name="ExpLabios">
                 <Expander.Header>
                     <Label Text="Labios" Margin="0,0,0,10" HorizontalOptions="Center"/>
                 </Expander.Header>
@@ -52,18 +54,18 @@
                 </Grid>
             </Expander>
         </Grid>
-        
-        
+
+        <!--Productos para los Ojos-->
         <Grid Grid.Row="0"
                   Grid.Column="2"
                   HorizontalOptions="Center">
-            <Expander>
+            <Expander x:Name="ExpOjos">
                 <Expander.Header>
                     <Label Text="Ojos" Margin="0,0,0,10" HorizontalOptions="Center"/>
                 </Expander.Header>
                 <Grid RowDefinitions="Auto, Auto, Auto" >
 
-                    <Expander Grid.Row="0">
+                    <Expander Grid.Row="0" x:Name="ExpDelin">
                         <Expander.Header>
                             <Label Text="Delineadores" Margin="0,12,0,12" HorizontalOptions="Center"/>
                         </Expander.Header>
@@ -79,8 +81,10 @@
             </Expander>
         </Grid>
 
+        <ActivityIndicator x:Name="indicador" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" IsEnabled="True" IsRunning="True" IsVisible="False" Color="Black" BackgroundColor="Transparent"/>
 
-        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
+        <!--CollectionView que muestra los productos según categoría seleccionada-->
+        <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
             <CollectionView x:Name="ListaProductos" ItemsLayout="VerticalGrid, 2">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
@@ -99,7 +103,8 @@
                                    Grid.ColumnSpan="3"
                                    Text="{Binding Name}" 
                                    FontSize="Small"
-                                   LineBreakMode="WordWrap" />
+                                   LineBreakMode="WordWrap" 
+                                   Margin="3,0,3,0"/>
                             
                             <Label Grid.Row="2" 
                                    Grid.Column="1"
@@ -108,7 +113,8 @@
                             
                             <Label Grid.Row="2"
                                    Grid.Column="2"
-                                   Text="€"/>
+                                   Text="€"
+                                   Margin="0,0,8,0"/>
 
                         </Grid>
                     </DataTemplate>
