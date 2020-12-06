@@ -81,7 +81,7 @@
             </Expander>
         </Grid>
 
-        <ActivityIndicator x:Name="indicador" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" IsEnabled="True" IsRunning="True" IsVisible="False" Color="Black" BackgroundColor="Transparent"/>
+        <ActivityIndicator x:Name="Indicador" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" IsEnabled="True" IsRunning="True" IsVisible="False" Color="Black" BackgroundColor="Transparent"/>
 
         <!--CollectionView que muestra los productos según categoría seleccionada-->
         <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">

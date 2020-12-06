@@ -15,6 +15,9 @@ namespace MakeupList
 {
     public partial class MainPage : ContentPage
     {
+        // Como siempre se usará el mismo servicio REST, he cogido la parte de la url 
+        //donde no se realiza una consulta para dinamizar y esclarecer el código. 
+        private string url = "https://makeup-api.herokuapp.com/api/v1/products.json";
         public MainPage()
         {
             InitializeComponent();
@@ -28,67 +31,85 @@ namespace MakeupList
             Product[] producto = Product.FromJson(json);
 
             ListaProductos.ItemsSource = producto;
-            indicador.IsVisible = false;
+            if (producto.Length > 0)
+            {
+                Indicador.IsVisible = false;
+            }
+            
         } 
-        private void BtnLabial_Clicked(object sender, EventArgs e)
+
+        private void Cargando()
         {
             ExpCara.IsExpanded = false;
             ExpDelin.IsExpanded = false;
             ExpLabios.IsExpanded = false;
             ExpOjos.IsExpanded = false;
-            indicador.IsVisible = true;
+            Indicador.IsVisible = true;
+        }
+
+        private void BtnLabial_Clicked(object sender, EventArgs e)
+        {
+            Cargando();
 
             HttpClient cliente = new HttpClient();
-            string url = "https://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline&product_type=lipstick";
+            this.url += "?brand=maybelline&product_type=lipstick";
             // En este método se pasa el cliente junto a la url de donde se consumen los datos
             TomarDatos(cliente, url);
         }
 
         private void BtnColorete_Clicked(object sender, EventArgs e)
         {
-            string url = "https://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline&product_type=blush";
+            Cargando();
+            this.url += "?brand=maybelline&product_type=blush";
             TomarDatos(new HttpClient(), url);
         }
 
         private void BtnBronceador_Clicked(object sender, EventArgs e)
         {
-            string url = "https://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline&product_type=bronzer";
+            Cargando();
+            this.url += "?brand=maybelline&product_type=bronzer";
             TomarDatos(new HttpClient(), url);
         }
 
         private void BtnBase_Clicked(object sender, EventArgs e)
         {
-            string url = "https://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline&product_type=foundation";
+            Cargando();
+            this.url += "?brand=maybelline&product_type=foundation";
             TomarDatos(new HttpClient(), url);
         }
 
         private void BtnPerfiladores_Clicked(object sender, EventArgs e)
         {
-            string url = "https://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline&product_type=lip_liner";
+            Cargando();
+            this.url += "?brand=maybelline&product_type=lip_liner";
             TomarDatos(new HttpClient(), url);
         }
 
         private void BtnDelCejas_Clicked(object sender, EventArgs e)
         {
-            string url = "https://makeup-api.herokuapp.com/api/v1/products.json?brand=clinique&product_type=eyebrow";
+            Cargando();
+            this.url += "?brand=clinique&product_type=eyebrow";
             TomarDatos(new HttpClient(), url);
         }
 
         private void BtnDelOjos_Clicked(object sender, EventArgs e)
         {
-            string url = "https://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline&product_type=eyeliner";
+            Cargando();
+            this.url += "?brand=maybelline&product_type=eyeliner";
             TomarDatos(new HttpClient(), url);
         }
 
         private void BtnSombra_Clicked(object sender, EventArgs e)
         {
-            string url = "https://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline&product_type=eyeshadow";
+            Cargando();
+            this.url += "?brand=maybelline&product_type=eyeshadow";
             TomarDatos(new HttpClient(), url);
         }
 
         private void BtnRimel_Clicked(object sender, EventArgs e)
         {
-            string url = "https://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline&product_type=mascara";
+            Cargando();
+            this.url += "?brand=maybelline&product_type=mascara";
             TomarDatos(new HttpClient(), url);
         }
     }
