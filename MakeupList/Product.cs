@@ -39,9 +39,6 @@ namespace MakeupList
         [JsonProperty("description")]
         public string Description { get; set; }
 
-        [JsonProperty("rating")]
-        public double? Rating { get; set; }
-
         [JsonProperty("category")]
         public string Category { get; set; }
 

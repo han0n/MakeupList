@@ -28,9 +28,16 @@ namespace MakeupList
             Product[] producto = Product.FromJson(json);
 
             ListaProductos.ItemsSource = producto;
+            indicador.IsVisible = false;
         } 
         private void BtnLabial_Clicked(object sender, EventArgs e)
         {
+            ExpCara.IsExpanded = false;
+            ExpDelin.IsExpanded = false;
+            ExpLabios.IsExpanded = false;
+            ExpOjos.IsExpanded = false;
+            indicador.IsVisible = true;
+
             HttpClient cliente = new HttpClient();
             string url = "https://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline&product_type=lipstick";
             // En este método se pasa el cliente junto a la url de donde se consumen los datos
