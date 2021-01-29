@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakeupList.UWP", "MakeupLis
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakeupList.Android", "MakeupList.Android\MakeupList.Android.csproj", "{B7B5BBE6-15D5-4835-B069-D07ADC0C02FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakeupList", "MakeupList\MakeupList.csproj", "{21FB5CA0-A47E-4DE7-99E1-FCECFE288983}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MakeupList", "MakeupList\MakeupList.csproj", "{21FB5CA0-A47E-4DE7-99E1-FCECFE288983}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

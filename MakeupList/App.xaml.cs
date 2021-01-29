@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MakeupList.MenuCajon;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,7 +12,7 @@ namespace MakeupList
             Device.SetFlags(new string[] { "Expander_Experimental" });
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new MakeupMasterDetailPage();
         }
 
         protected override void OnStart()

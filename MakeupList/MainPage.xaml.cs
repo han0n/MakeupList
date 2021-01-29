@@ -23,7 +23,7 @@ namespace MakeupList
             InitializeComponent();
             BtnClinique.Clicked += BtnClinique_Clicked;
             BtnMaybelline.Clicked += BtnMaybelline_Clicked;
-            Ayuda.Text = "Seleccione la marca y el tipo  de producto para que se muestre el catálogo de productos.";
+            Ayuda.Text = "Seleccione la marca y el tipo de producto para que se muestre el catálogo de productos.";
         }
 
         #region Botones Marca
